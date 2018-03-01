@@ -3,3 +3,6 @@ CREATE  TABLE users (
   user_name VARCHAR(50) NOT NULL,
   CONSTRAINT uc_user_name UNIQUE (user_name),
   PRIMARY KEY (id));
+
+INSERT INTO users (user_name) values('admin');
+INSERT INTO users (user_name) values('user');
