@@ -1,5 +1,7 @@
 package com.db.dbservice.resource;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,9 +28,20 @@ public class DbServiceResource {
 		return userRepository.findByUserName(userName);
 
 	}
+	
+	@GetMapping("/all")
+	public List<User> findAllUsers() {
+		return userRepository.findAll();
+	}
 
 	@PostMapping("/add")
 	public User addUser(@RequestBody final User user) {
+		userRepository.save(user);
+		return userRepository.findByUserName(user.getUserName());
+	}
+	
+	@PostMapping("/update")
+	public User updateUser(@RequestBody final User user) {
 		userRepository.save(user);
 		return userRepository.findByUserName(user.getUserName());
 	}
